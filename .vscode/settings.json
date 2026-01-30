@@ -1,0 +1,5 @@
+{
+    "python.analysis.extraPaths": [
+        "./blogs/migrations/0003_"
+    ]
+}
