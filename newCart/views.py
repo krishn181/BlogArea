@@ -1,14 +1,22 @@
 from django.shortcuts import render
-from django.http import HttpResponse
-from blogs.models import Category, Blog
-def home(request):
-    # categories = Category.objects.all()
-    featured_post = Blog.objects.filter(is_featured=True).order_by('updated_at')
-    posts = Blog.objects.filter(is_featured=False,status = 'Published')
+from assignment.models import About
+from blogs.models import Blog
 
+def home(request):
+    all_posts = Blog.objects.filter(status='Published').order_by('-updated_at')
+
+    hero_post = all_posts[:1]        # 1 before featured
+    featured_post = all_posts[1:4]   # next 2 featured
+    posts = all_posts[4:]            # rest recent posts
+    #fetch about us
+    try:
+        about = About.objects.get()
+    except:
+        about = None
     context = {
-       # 'categories': categories,
+        'hero_post': hero_post,
         'featured_post': featured_post,
-        'post':posts,
+        'posts': posts,
+        'about':about,
     }
     return render(request, 'home.html', context)
