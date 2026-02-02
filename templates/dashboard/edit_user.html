@@ -1,0 +1,33 @@
+ {% extends "base.html" %}
+
+{% block content %}
+
+{% load crispy_forms_tags %}
+<div class="row ">
+
+    <!--left-->
+   {% include "dashboard/sidebar.html" %}
+   
+      <!--right-->
+    <div class="col-md-9">
+
+        {% if perms.auth.add_user %}
+        <h3>Edit User</h3>
+         
+        <form action="#" method="POST" style="width:500px;">
+            {% csrf_token %}
+
+            {{form | crispy}}
+            <button type="submit" class="btn btn-warning">Submit </button>
+        </form>
+        <br><br>
+        {% else %}
+        <h5>You don't have permission</h5>
+        {% endif %}
+    </div>
+</div>
+
+
+
+{% endblock %} 
+

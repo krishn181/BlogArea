@@ -1,0 +1,40 @@
+ {% extends "base.html" %}
+
+{% block content %}
+
+{% load crispy_forms_tags %}
+<div class="row ">
+
+    <!--left-->
+   {% include "dashboard/sidebar.html" %}
+   
+   
+            {% if form.errors %}
+            <div class="alert alert-danger">
+                <strong>Please fix the errors below:</strong>
+            </div>
+            {% endif %}
+
+    <!--right-->
+    <div class="col-md-9">
+
+        {% if perms.auth.add_user %}
+        <h3>Add New User</h3>
+         
+        <form action="{% url 'add_user'%}" method="POST" style="width:500px;">
+            {% csrf_token %}
+
+            {{form | crispy}}
+            <button type="submit" class="btn btn-warning">Submit </button>
+        </form>
+        <br><br>
+        {% else %}
+        <h5>You don't have permission</h5>
+        {% endif %}
+    </div>
+</div>
+
+
+
+{% endblock %} 
+
