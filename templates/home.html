@@ -21,20 +21,24 @@ style="background-image: url({{post.featured_image}});background-blend-mode: ove
 <h3 class="text-uppercase text-warning" style="letter-spacing:2px;"> Feartured Posts</h3>
   <div class="row mb-2">
 
-    {% for post  in featured_post %}
-  {% if not forloop.first %}
-
-    <div class="col-md-6">
-      <div class="card border-0" >
-        <div class="card-body">
-          <h3> <a href="{% url 'blogs' post.slug %}" class="text-dark ">{{post.title}}</a></h3>
-          <small class="mb-1 text-muted">{{post.created_at |timesince}} ago | {{post.author}}</small>
-          <p class="card-text">{{post.short_description | truncatewords:25}}</p>
-        </div>
+  {% for post in hero_post %}
+  {% if forloop.first and post.slug %}
+    <div class="jumbotron p-3 p-md-5 text-white rounded bg-dark"
+      style="background-image: url({{ post.featured_image.url }}); background-size:cover;">
+      
+      <div class="col-md-8 px-0">
+        <h1 class="display-4 font-italic">{{ post.title }}</h1>
+        <p class="lead my-3">{{ post.short_description|truncatewords:10 }}</p>
+        <p class="lead mb-0">
+          <a href="{% url 'blogs' post.slug %}" class="text-white font-weight-bold">
+            Continue reading...
+          </a>
+        </p>
       </div>
     </div>
-    {% endif %}
-  {% endfor %}
+  {% endif %}
+{% endfor %}
+
   </div>
 
   <!-- Recent posts -->
