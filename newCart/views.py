@@ -10,21 +10,25 @@ from django.contrib import auth
 def home(request):
     all_posts = Blog.objects.filter(status='Published').order_by('-updated_at')
 
-    hero_post = all_posts[:1]        # 1 before featured
-    featured_post = all_posts[1:4]   # next 2 featured
-    posts = all_posts[4:]            # rest recent posts
-    #fetch about us
+    hero_post = all_posts[:1]
+    featured_post = all_posts[1:4]
+
+    # recent posts = everything except hero + featured
+    posts = all_posts[4:]
+
     try:
         about = About.objects.get()
-    except:
+    except About.DoesNotExist:
         about = None
+
     context = {
         'hero_post': hero_post,
         'featured_post': featured_post,
         'posts': posts,
-        'about':about,
+        'about': about,
     }
     return render(request, 'home.html', context)
+
 
 def register(request):
     if request.method == 'POST':

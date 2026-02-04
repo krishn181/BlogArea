@@ -1,11 +1,13 @@
-
+/* =======================
+   Blog Base Styles
+======================= */
 
 .blog-header {
   border-bottom: 1px solid #e5e5e5;
 }
 
 .blog-header-logo {
-  font-family: "Playfair Display", Georgia, "Times New Roman", serif/*rtl:Amiri, Georgia, "Times New Roman", serif*/;
+  font-family: "Playfair Display", Georgia, "Times New Roman", serif;
   font-size: 2.25rem;
 }
 
@@ -14,12 +16,13 @@
 }
 
 h1, h2, h3, h4, h5, h6 {
-  font-family: "Playfair Display", Georgia, "Times New Roman", serif/*rtl:Amiri, Georgia, "Times New Roman", serif*/;
+  font-family: "Playfair Display", Georgia, "Times New Roman", serif;
 }
 
 .display-4 {
   font-size: 2.5rem;
 }
+
 @media (min-width: 768px) {
   .display-4 {
     font-size: 3rem;
@@ -30,33 +33,45 @@ h1, h2, h3, h4, h5, h6 {
   flex: 0 0 auto;
 }
 
-.h-250 { height: 250px; }
-@media (min-width: 768px) {
-  .h-md-250 { height: 250px; }
+.h-250 {
+  height: 250px;
 }
 
-/* Pagination */
+@media (min-width: 768px) {
+  .h-md-250 {
+    height: 250px;
+  }
+}
+
+/* =======================
+   Pagination
+======================= */
+
 .blog-pagination {
   margin-bottom: 4rem;
 }
 
-/*
- * Blog posts
- */
+/* =======================
+   Blog Posts
+======================= */
+
 .blog-post {
   margin-bottom: 4rem;
 }
+
 .blog-post-title {
   font-size: 2.5rem;
 }
+
 .blog-post-meta {
   margin-bottom: 1.25rem;
   color: #727272;
 }
 
-/*
- * Footer
- */
+/* =======================
+   Footer
+======================= */
+
 .blog-footer {
   padding: 2.5rem 0;
   color: #727272;
@@ -64,6 +79,130 @@ h1, h2, h3, h4, h5, h6 {
   background-color: #f9f9f9;
   border-top: .05rem solid #e5e5e5;
 }
+
 .blog-footer p:last-child {
   margin-bottom: 0;
+}
+
+/* =======================
+   Mobile Devices
+======================= */
+
+@media (max-width: 576px) {
+  .blog-header-logo {
+    font-size: 1.6rem;
+    text-align: center;
+    display: block;
+  }
+
+  .display-4 {
+    font-size: 1.8rem;
+  }
+
+  .blog-post-title {
+    font-size: 1.75rem;
+  }
+
+  .blog-post {
+    margin-bottom: 2.5rem;
+  }
+
+  .blog-post-meta {
+    font-size: 0.9rem;
+  }
+
+  .blog-footer {
+    padding: 1.5rem 1rem;
+    font-size: 0.9rem;
+  }
+}
+
+/* =======================
+   Tablet Devices
+======================= */
+
+@media (max-width: 768px) {
+  .blog-header {
+    text-align: center;
+  }
+
+  .blog-post-title {
+    font-size: 2rem;
+  }
+
+  .blog-pagination {
+    margin-bottom: 3rem;
+  }
+}
+
+/* =======================
+   Small Laptops
+======================= */
+
+@media (max-width: 992px) {
+  .display-4 {
+    font-size: 2.2rem;
+  }
+
+  .blog-post-title {
+    font-size: 2.25rem;
+  }
+}
+
+/* =======================
+   Short Screen Height
+======================= */
+
+@media (max-height: 600px) {
+  .h-250,
+  .h-md-250 {
+    height: auto;
+  }
+}
+
+/* =================================================
+   NAVBAR – ALWAYS SHOW HAMBURGER (MOBILE + DESKTOP)
+================================================= */
+
+/* Always show hamburger icon */
+.navbar-toggler {
+  display: block !important;
+  border: none;
+  outline: none;
+}
+
+/* Hide navbar menu by default */
+.navbar-collapse {
+  display: none !important;
+}
+
+/* Show menu when toggled */
+.navbar-collapse.show {
+  display: block !important;
+}
+
+/* Improve dropdown spacing */
+.navbar-nav {
+  padding-top: 0.5rem;
+}
+
+.navbar-nav .nav-link {
+  padding: 0.6rem 1rem;
+}
+
+/* Mobile + Desktop menu background */
+.navbar-collapse {
+  background-color: #ffffff;
+  border-top: 1px solid #e5e5e5;
+}
+
+/* Dark mode support (optional) */
+@media (prefers-color-scheme: dark) {
+  .navbar-collapse {
+    background-color: #121212;
+  }
+
+  .navbar-nav .nav-link {
+    color: #ffffff;
+  }
 }
