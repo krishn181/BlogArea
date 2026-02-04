@@ -21,18 +21,47 @@
                     <p class="fs-5 mb-4">{{single_blog.short_description}}</p>
                     <p class="fs-5 mb-4">{{single_blog.blog_body}}</p>
 
+
+                    <h4>Comments ({{ comment_cnt }})</h4>
+                    {% if comment %}
+                    {% for comment in comment %}
+                    <div class="card mt-1">
+                        <div class="card-body">
+                            <p class="card-text md-0">
+                                             {{comment}}
+                            </p>
+                            <span>
+                                <small> By {{comment.user}}</small>
+                                <small>|{{ comment.created_at | timesince  }} ago</small>
+                            </span>
+                        </div>
+                    </div>
+                    {% endfor %}
+                    {% else %}
+                    No Comments Yet.
+                    {% endif %}
+
+                    <br>
+                    <div class="form-group">
+                        {% if user.is_authenticated %}
+                        <form action="" method="POST">
+                            {% csrf_token %}
+                            <div class="form-group">
+                                <textarea name="comment" class="form-control" placeholder="Write Your Comment"></textarea>
+                                <input type="submit" value="Submit"class="btn btn-primary bg-warning pt-2 mt-2">
+                            </div>
+                        </form>
+                        {% else %}
+                        <p>Please <span class=" mt-1"> <a href="{% url 'login' %}">login</a></span> for comment </p>
+
+                        {% endif %}
+                    </div>
                     </section>
             </article>
         </div>
         <!-- Side widgets-->
         <div class="col-lg-4">
-            <!-- Search widget-->
-            {% comment %} <div class="card mb-4">
-                <div class="card-header">Search</div>
-                <div class="card-body">
-                   
-                </div>
-            </div> {% endcomment %}
+            
             <!-- Categories widget-->
             <div class="card mb-4 p-3">
                 <h4 class="font-italic">Categories</h4>
